@@ -7,24 +7,24 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\TypedData\DataDefinition;
 
 /**
- * Class ContactItem.
+ * Class AddressPhoneNumberItem.
  *
  * @FieldType(
- *  id = "contact_address_item",
+ *  id = "address_phone_number_item",
  *  label = @Translation("Address with Phonenumber"),
  *  description = @Translation("This entity for extending contact field in address module"),
- *  default_widget = "contact_default",
- *  default_formatter = "contact_default",
+ *  default_widget = "address_phone_number_default",
+ *  default_formatter = "address_phone_number_default",
  * )
  */
-class ContactItem extends AddressItem {
+class AddressPhoneNumberItem extends AddressItem {
 
   /**
    * {@inheritdoc}
    */
   public static function schema(FieldStorageDefinitionInterface $field_definition) {
     $schema = parent::schema($field_definition);
-    $schema['columns']['contact'] = [
+    $schema['columns']['address_phonenumber'] = [
       'type' => 'varchar',
       'length' => 255,
 
@@ -38,8 +38,8 @@ class ContactItem extends AddressItem {
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
     $properties = parent::propertyDefinitions($field_definition);
     $contact_definition = DataDefinition::create('string')
-      ->setLabel(t('Contact'));
-    $properties['contact'] = $contact_definition;
+      ->setLabel(t('Address Phonenumber'));
+    $properties['address_phonenumber'] = $contact_definition;
     return $properties;
   }
 

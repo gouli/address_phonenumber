@@ -6,18 +6,18 @@ use Drupal\address\Plugin\Field\FieldFormatter\AddressDefaultFormatter;
 use Drupal\Core\Field\FieldItemListInterface;
 
 /**
- * Class ContactDefaultFormatter.
+ * Class AddressPhoneNumberDefaultFormatter.
  *
  * @FieldFormatter(
- *   id = "contact_default",
- *   label = @Translation("Contact Address"),
- *   description = @Translation("Display the reference entities’ label with their contact address."),
+ *   id = "address_phone_number_default",
+ *   label = @Translation("Address with Phonenumber"),
+ *   description = @Translation("Display the reference entities’ label with their address phonenumber."),
  *   field_types = {
- *     "contact_address_item"
+ *     "address_phone_number_item"
  *   }
  * )
  */
-class ContactDefaultFormatter extends AddressDefaultFormatter {
+class AddressPhoneNumberDefaultFormatter extends AddressDefaultFormatter {
 
   /**
    * {@inheritdoc}
@@ -26,7 +26,7 @@ class ContactDefaultFormatter extends AddressDefaultFormatter {
     $elements = parent::viewElements($items, $langcode);
     $values = $items->getValue();
     foreach ($elements as $delta => $entity) {
-      $elements[$delta]['#suffix'] = '<br><span class="ct-addr">' . $values[$delta]['contact'] . '</span>';
+      $elements[$delta]['#suffix'] = '<br><span class="ct-addr">' . $values[$delta]['address_phonenumber'] . '</span>';
     }
     return $elements;
   }

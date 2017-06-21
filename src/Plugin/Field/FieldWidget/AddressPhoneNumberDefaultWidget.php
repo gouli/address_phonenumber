@@ -10,33 +10,33 @@ use \libphonenumber\PhoneNumberUtil;
 use \libphonenumber\NumberParseException;
 
 /**
- * Class ContactDefaultWidget.
+ * Class AddressPhoneNumberDefaultWidget.
  *
  * @FieldWidget(
- *   id = "contact_default",
+ *   id = "address_phone_number_default",
  *   label = @Translation("Address with Phonenumber"),
  *   description = @Translation("An contact text field with an associated Address."),
  *   field_types = {
- *     "contact_address_item"
+ *     "address_phone_number_item"
  *   }
  * )
  */
-class ContactDefaultWidget extends AddressDefaultWidget {
+class AddressPhoneNumberDefaultWidget extends AddressDefaultWidget {
 
   /**
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $widget = parent::formElement($items, $delta, $element, $form, $form_state);
-    $widget['address']['#type'] = 'contact_address_item';
+    $widget['address']['#type'] = 'address_phone_number_item';
     $widget['address']['locality'] = [
       '#weight' => 1,
     ];
-    $widget['address']['contact'] = [
+    $widget['address']['address_phonenumber'] = [
       '#title' => $this->t('Phone Number'),
       '#type' => 'textfield',
       '#required' => TRUE,
-      '#default_value' => isset($items[$delta]->contact) ? $items[$delta]->contact : NULL,
+      '#default_value' => isset($items[$delta]->address_phonenumber) ? $items[$delta]->address_phonenumber : NULL,
       '#weight' => 10,
       '#states' => [
         'invisible' => [
@@ -44,7 +44,7 @@ class ContactDefaultWidget extends AddressDefaultWidget {
         ],
       ],
       '#element_validate' => array(
-         array($this, 'contactValidate'),
+         array($this, 'addressphonenumberValidate'),
       ),
 
     ];
@@ -54,7 +54,7 @@ class ContactDefaultWidget extends AddressDefaultWidget {
   /**
    * {@inheritdoc}
    */
-  public function contactValidate($element, FormStateInterface $form_state, $form) {
+  public function addressphonenumberValidate($element, FormStateInterface $form_state, $form) {
     $form_values = $form_state->getValues();
     $array_parents = $element['#parents'];
     if (in_array('payment_information', $array_parents, TRUE)) {
@@ -66,7 +66,7 @@ class ContactDefaultWidget extends AddressDefaultWidget {
     array_pop($array_parents);
     $telephone = NestedArray::getValue(
       $form_values,
-      array_merge($array_parents, ['contact'])
+      array_merge($array_parents, ['address_phonenumber'])
     );
     $country_code = NestedArray::getValue(
       $form_values,

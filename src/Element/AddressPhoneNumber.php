@@ -6,21 +6,21 @@ use Drupal\address\Element\Address;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Provides an contact_address form element.
+ * Provides an adress_phone_number form element.
  *
  * Usage example:
  * @code
- * $form['contact_address_item'] = [
- *   '#type' => 'contact_address_item',
+ * $form['address_phone_number_item'] = [
+ *   '#type' => 'address_phone_number_item',
  *   '#default_value' => [
  *     'contact' => '9999999999',
  *   ],
  * ];
  * @endcode
  *
- * @FormElement("contact_address_item")
+ * @FormElement("address_phone_number_item")
  */
-class ContactAddress extends Address {
+class AddressPhoneNumber extends Address {
 
   /**
    * {@inheritdoc}
@@ -45,7 +45,7 @@ class ContactAddress extends Address {
         'given_name', 'additional_name', 'family_name', 'organization',
         'address_line1', 'address_line2', 'postal_code', 'sorting_code',
         'dependent_locality', 'locality', 'administrative_area',
-        'country_code', 'langcode', 'contact',
+        'country_code', 'langcode', 'address_phonenumber',
       ];
       foreach ($properties as $property) {
         if (!isset($element['#default_value'][$property])) {
