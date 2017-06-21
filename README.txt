@@ -18,8 +18,11 @@ https://www.drupal.org/project/issues/address_phonenumber
 ---INSTALLATION---
 
 [1] Install the Drupal 8 and Address module.
-[2] Download Address Phonenumber module and enable it.
-[3] Go to config -> people -> user profiles and click on to Profile types tab.
+[2] Download Address Phonenumber module
+[3] Run the composer update command because we need
+   "giggsey/libphonenumber-for-php" library for phonenumber verification.
+[4] Enable the address Phonenumber module.
+[5] Go to config -> people -> user profiles and click on to Profile types tab.
    * There is a default profile type Customer is present so click on manage
      fields.
    * Now you can add new field "Address with Phonenumber".
